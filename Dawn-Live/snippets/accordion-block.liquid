@@ -1,0 +1,127 @@
+{% if heading contains "Unique Attributes" %}
+	{% assign attributes_accordion = true %}
+{% endif %}
+{% liquid
+	if accordion_default == 'open'
+    	assign open_accordion = true
+    endif
+%}
+<style>
+  .accordion .property-row{
+  	text-transform: capitalize;
+    margin: 0;
+    margin-bottom: 18px;
+    font-size: 0;
+  }
+  
+  .accordion .property-swatch {
+   	width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  .accordion .property-swatch.stone {
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    margin-left: 8px;
+    margin-right: 2px;
+  }
+  
+  .accordion .property-swatch.energy {
+    margin: 0;
+    margin-left: 8px;
+    margin-right: 2px;
+  }
+  
+  .accordion .property-row span{
+  	margin-left: 6px;
+    font-size: 16px;
+    vertical-align: middle;
+      white-space: nowrap;
+  }
+  
+</style>
+
+{% if attributes_accordion %}
+  {% if product.type contains "Gemstone Bracelet" %} 
+  <div class="accordion rte {{ classes }} {% if open_accordion %}open{% else %}closed{% endif %}">
+    <div
+      class="accordion__group"
+      data-index="{{ forloop.index0 }}"
+      {{ block.shopify_attributes }}
+    >
+      <a class="accordion__label" href="#">
+        {{ heading }}
+        {%- render 'icon-xotix' with icon: 'triangle', class: 'accordion-icon' -%}
+      </a>
+      <div class="accordion__text{% if small_text %} fs-body-small{% endif %}">
+        {{ content }}
+
+          <div class="properties-content">
+            <div class="property-row">
+              {% if product.metafields.color != blank %}
+              <span>Lifestone:</span> 
+                {%- for field in product.metafields.color -%}
+                    <span><div class="property-swatch energy" style="background-color: {{ field | last }}"></div> {{ field | first }}</span>
+                {%- endfor -%}    
+              {% endif %}
+            </div> 
+            <div class="property-row">
+              {% if product.metafields.global_lifestone != blank %}
+                <span><b>Lifestone:</b></span>	
+                {%- for field in product.metafields.global_lifestone -%}
+                    <span><div class="property-swatch stone" style="background-image: url('https://res.cloudinary.com/xotixdesigns/image/upload/w_50,h_50/stones_swatches/{{ field | first }}.jpg');"></div> {{ field | last }}</span>
+                {%- endfor -%}
+              {% endif %}
+            </div>
+            <div class="property-row">
+              {% if product.metafields.accessory != blank %}
+                <span>Accessory:</span>
+                {%- for field in product.metafields.accessory -%}
+                  {% if forloop.first == true %}
+                      <span>{{ field | last }}</span>
+                  {% else %}
+                      <span>| {{ field | last }}</span>
+                  {% endif %}
+                {%- endfor -%}
+              {% endif %}
+            </div>
+            <div class="property-row">
+              {% if product.metafields.bead-size != blank %}
+                <span>Bead size:</span>	
+                {%- for field in product.metafields.bead-size -%}
+                    <span>{{ field | last }}</span>
+                {%- endfor -%}
+              {% endif %}
+            </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+{% else %}
+
+<div class="accordion rte {{ classes }} {% if open_accordion %}open{% else %}closed{% endif %}">
+  <div
+    class="accordion__group"
+    data-index="{{ forloop.index0 }}"
+    {{ block.shopify_attributes }}
+  >
+    <a class="accordion__label" href="#">
+      {{ heading }}
+      {%- render 'icon-xotix' with icon: 'triangle', class: 'accordion-icon' -%}
+    </a>
+    <div class="accordion__text{% if small_text %} fs-body-small{% endif %}">
+      {{ content }}
+    </div>
+  </div>
+</div>
+
+{% endif %}

@@ -1,0 +1,263 @@
+.page-title {
+  margin-top: 0;
+}
+
+.main-page-title {
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .main-page-title {
+    margin-bottom: 4rem;
+  }
+}
+
+.page-placeholder-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.page-placeholder {
+  width: 52.5rem;
+  height: 52.5rem;
+}
+
+h1.main-page-title {
+  text-align: center;
+}
+
+.page-width.customer-reviews .page__inner {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+	
+}
+  
+.page-width.customer-reviews .hulk-pr__list-view  {
+  display:flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 100%;
+}
+  
+.page-width.customer-reviews #hulk__product-review .hulk-pr__list-items {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #00000021;
+  margin-bottom: 20px;
+}  
+
+
+@media screen and (min-width: 600px) { 
+  .page-width.customer-reviews .hulk-pr__list-view  {
+	max-height: 4000px;
+  }
+  .page-width.customer-reviews #hulk__product-review .hulk-pr__list-items {
+    max-width: calc(50% - 20px);
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 1024px) { 
+  .page-width.customer-reviews .hulk-pr__list-view  {
+    max-height: 2400px;
+  }  
+
+  .page-width.customer-reviews #hulk__product-review .hulk-pr__list-items {
+    max-width: 23%;
+    margin-bottom: 2%;
+    margin-right: 2%;  
+  }
+}
+  
+.page-width.customer-reviews #hulk__product-review div.font-weight-bold img {
+  margin: 15px 0;
+}  
+  
+.page-width.customer-reviews #hulk__product-review .hulk-item,
+.page-width.customer-reviews #hulk__product-review .hulk-row,
+.page-width.customer-reviews #hulk__product-review .review-details{
+  	margin: 0;
+  	cursor: pointer;
+}
+  
+.page-width.customer-reviews #hulk__product-review .hulk-row .image-container {
+	padding: 0 15px;  
+  	margin: 0;
+}
+.page-width.customer-reviews #hulk__product-review .hulk-row .image-container img {
+  	margin: 0;
+}
+  
+.page-width.customer-reviews #hulk__product-review .hulk-flex {
+	margin: 0;
+}
+  
+.page-width.customer-reviews #hulk__product-review .hulk-item {
+  	padding: 15px 30px 0 30px !important;
+}
+  
+.page-width.customer-reviews #hulk__product-review .product-review-photo {
+  	display: none;
+}
+  
+.page-width.customer-reviews #hulk__product-review .review-time {
+  	font-size: 13px;
+    color: #000000b3;
+}
+  
+.page-width.customer-reviews .review-details .hulk-pr__review-icon {
+	margin-top: 8px;
+}
+  
+.page-width.customer-reviews #hulk__product-review div.font-weight-bold {
+    border-top: 1px solid #00000021;
+  	margin: 0;
+  	display: flex;
+  	align-items: center;
+}
+
+.page-width.customer-reviews #hulk__product-review div.font-weight-bold img {
+	flex-basis: 25%;
+  	width: 25%;
+  	height: 25%;
+}
+  
+.page-width.customer-reviews #hulk__product-review div.font-weight-bold p {
+	margin: 0;
+  	flex-basis: 75%;
+	width: 75%;
+  	font-size: 14px;
+    margin-left: 15px;
+}
+
+.page-width.customer-reviews .modal-container {
+	width: 100vw;
+  	height: 100vh;
+  	position: absolute;
+  	top:0;
+  	left:0;
+ 	background: #000000a3;
+ 	
+  	margin: 0;
+  	opacity: 0;
+  	visibility: hidden;
+  	z-index: 500;
+  	transition: all .7s ease-in-out;
+} 
+  
+.page-width.customer-reviews .modal-container .modal-bkg {
+  	display: none;
+}
+  
+.page-width.customer-reviews .modal-container .modal-content {  
+   	/*border: 1px solid blue;*/
+  	background: #000;
+   	height: calc(90% - 50px);
+    width: 90%;
+  	max-width: 1100px;
+    margin: auto;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  	display: flex;
+  	border-radius: 10px;
+}
+  
+@media screen and (min-width: 960px) {
+	.page-width.customer-reviews .modal-container .modal-content {  
+      	height: calc(90% - 130px);
+    }
+}
+  
+.page-width.customer-reviews #hulk__product-review .modal-container .review-img,
+.page-width.customer-reviews .modal-container .review-content{
+	flex: 0 0 50%;
+  	margin: 0;
+	object-fit: contain;
+    max-width: 50%;
+}
+
+.page-width.customer-reviews .modal-container .review-content{
+	background: #FFF;
+  	display: flex;
+    flex-direction: column;
+  	border-radius: 0 10px 10px 0;
+}
+.page-width.customer-reviews .modal-container .review-content .close-icon {
+    width: 30px;
+    height: 30px;
+    top: 6px;
+    right: 6px;
+  	margin: 0;
+  	position: absolute;
+  	cursor: pointer;
+}
+  
+.page-width.customer-reviews .modal-container .review-content .close-icon svg{
+    width: 100%;
+    height: 100%;
+}
+
+  
+.page-width.customer-reviews .modal-container .review-content .review-body {
+  	flex-basis: 60%;
+    margin: 0;
+    margin-top: 37px;
+    padding: 30px;
+}
+.page-width.customer-reviews .modal-container .review-content .review-body .author{
+  	display: inline-block;
+  	font-size: 18px;
+  	font-style: italic;
+}
+.page-width.customer-reviews .modal-container .review-content .review-body .date {
+  	float: right;
+	color: #000000b3;
+    font-size: 14px;
+}
+.page-width.customer-reviews #hulk__product-review.modal-container .review-content .review-body .hulk-pr__review-icon {
+  	margin-top: 0px;
+  	margin-bottom: 18px;
+} 
+.page-width.customer-reviews .modal-container .review-content .review-body .title {
+  	font-weight: bold;
+}
+.page-width.customer-reviews .modal-container .review-content .review-body .body {
+}  
+.page-width.customer-reviews .modal-container .review-content .product-container {
+  	flex-basis: 40%;
+  	max-height: 40%;
+  	margin: 0;
+  	padding: 0 30px;
+}
+  
+.page-width.customer-reviews .modal-container .review-content .product-container a {
+	display: flex;
+    align-items: center;
+    border-top: solid 1px #00000040;
+  	max-height: 100%;
+  	top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+    padding: 30px 0;
+}
+  
+.page-width.customer-reviews .modal-container .product-container .img-container {
+  	margin: 0;
+  	max-width: 50%;
+    margin-right: 30px;
+}  
+  
+.page-width.customer-reviews #hulk__product-review .modal-container .review-content .product-container img {
+	margin: 0;
+  	object-fit: contain;
+}  
+  
+.page-width.customer-reviews #hulk__product-review .modal-container .review-content .product-container button {
+  	margin-top: 12px;
+    font-family: 'Frutiger Serif';
+    border: 1px solid #00000045;
+    padding: 3px 8px;
+}

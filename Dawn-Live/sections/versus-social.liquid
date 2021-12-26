@@ -1,0 +1,218 @@
+{%- liquid
+  assign columns = section.settings.columns
+  assign column_count = columns
+  assign total_items = blocks.size
+
+  assign carousel_wraps = false
+  assign minimum_items_for_wrap_around = column_count | plus: 1
+  assign items_needed = minimum_items_for_wrap_around | minus: total_items
+
+  if items_needed <= 0 or total_items == 0
+    assign carousel_wraps = true
+  endif
+
+  assign carousel_item_count = total_items
+
+  if total_items == 0 and columns != blank
+    assign carousel_item_count = minimum_items_for_wrap_around
+  endif
+-%}
+
+{{ 'component-versus-social.css' | asset_url | stylesheet_tag }}
+
+{%- capture placeholder_item -%}
+  <div class="social-proof__slide" data-slide>
+    <div class="social-proof__image-wrapper">
+      <div class="social-proof__image placeholder-image">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    </div>
+  </div>
+{%- endcapture -%}
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="social-proof"
+  class="
+    xotix-social
+    social-proof
+    social-proof--columns-{{ column_count }}
+    social-proof--{{ section.settings.aspect_ratio }}
+    section
+    {% if section.settings.section_contrast -%}
+    section--contrast
+    {%- endif %}
+  "
+  style="
+    --text-max-width: {{ section.settings.text_max_width }}rem;
+  "
+  data-carousel-wraps="{{ carousel_wraps }}"
+>
+  <div class="page-width">
+  <div class="section__inner" style="padding:0;">
+    
+    <h2 class="versus-social-title">{{ section.settings.title | escape }}</h2>
+
+    <div class="social-proof__content">
+      <div class="social-proof__slider-wrapper">
+        <div class="social-proof__slider" data-slider style="margin:0;">
+           
+          <div id="xotix-social-modal">
+            <div class="modal-overlay"></div>
+            <div class="modal-navigation">
+              <a class="chevron-left">{% render 'icon-xotix' with icon: 'chevron', css: 'width: 56px; height: 56px; padding: 4px;' %}</a>
+              <a class="chevron-right">{% render 'icon-xotix' with icon: 'chevron', css: 'width: 56px; height: 56px; padding: 4px;' %}</a>
+              <a class="modal-close">{% render 'icon-xotix' with icon: 'close-stroke', css: 'width: 56px; height: 56px; padding: 4px;' %}</a>
+            </div>
+            <div class="modal-content">
+              <h1>ABCD</h1>
+              <p>adgfhgjhhgdfsda</p>
+            </div>
+          </div>
+          {%- for block in section.blocks -%}
+            {%- render 'versus-social-item' with
+              forloop: forloop,
+              block: block,
+              link: block.settings.link,
+              image: block.settings.image,
+              aspect_ratio: section.settings.aspect_ratio,
+          	  social_account: block.settings.social_account
+            -%}
+          {%- else -%}
+            {% for i in (1..minimum_items_for_wrap_around) %}
+              {{ placeholder_item }}
+            {% endfor %}
+          {%- endfor -%}
+        </div>
+      </div>
+      
+      {% render 'icon-xotix' with icon: 'chevron', class: 'left-nav hidden' %}
+      {% render 'icon-xotix' with icon: 'chevron', class: 'right-nav' %}
+      
+    </div>
+  </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Versus Social",
+    "tag": "section",
+    "class": "shopify-section--stackable shopify-section--text-first",
+    "settings": [
+      {
+        "type": "range",
+        "id": "columns",
+        "label": "Columns per row",
+        "min": 2,
+        "max": 6,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Section Title",
+        "default": "Versus Social"
+      },
+      {
+        "id": "subheading",
+        "type": "richtext",
+        "label": "Section Subheading",
+        "default": "<p>Use this Section to display your favourite social images.</p>"
+      },
+ 	  {
+        "id": "heading_alignment",
+        "type": "select",
+        "label": "Heading Alignment",
+        "options": [
+          { "label": "Left", "value": "left" },
+          { "label": "Center", "value": "center" },
+          { "label": "Right", "value": "right" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "text_max_width",
+        "label": "Max Width",
+        "min": 24,
+        "max": 48,
+        "step": 1,
+        "default": 42
+      },
+      {
+        "id": "aspect_ratio",
+        "type": "select",
+        "label": "Image Aspect Ratio",
+        "options": [
+          { "label": "Natural", "value": "natural" },
+          { "label": "Square (1:1)", "value": "square" },
+          { "label": "Landscape (3:2)", "value": "landscape" },
+          { "label": "Portrait (2:3)", "value": "portrait" }
+        ],
+        "default": "natural"
+      },
+      {
+        "id": "section_contrast",
+        "type": "checkbox",
+        "label": "Contrast Section",
+        "default": false
+      }
+    ],
+    "max_blocks": 15,
+    "blocks": [
+      {
+        "type": "post",
+        "name": "Post",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "id": "social_account",
+            "type": "select",
+            "label": "Social Account",
+            "options": [
+              { "label": "Facebook", "value": "facebook" },
+              { "label": "Instagram", "value": "instagram" },
+              { "label": "Youtube", "value": "youtube" },
+              { "label": "Snapchat", "value": "snapchat" },
+              { "label": "Twitter", "value": "twitter" },
+              { "label": "Tiktok", "value": "tiktok" },
+              { "label": "Pinterest", "value": "pinterest" }
+            ],
+            "default": "instagram"
+          },
+          {
+            "type": "header",
+            "content": "Details"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Versus Social",
+        "blocks": [
+          {
+            "type": "post"
+          },
+          {
+            "type": "post"
+          },
+          {
+            "type": "post"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,202 @@
+{
+  "current": {
+    "colors_solid_button_labels": "#ffffff",
+    "colors_accent_1": "#000000",
+    "colors_accent_2": "#030303",
+    "colors_text": "#000000",
+    "colors_outline_button_labels": "#454343",
+    "colors_background_1": "#ffffff",
+    "colors_background_2": "#ffffff",
+    "type_header_font": "oxygen_n3",
+    "heading_scale": 100,
+    "type_body_font": "assistant_n4",
+    "body_scale": 100,
+    "sale_badge_color_scheme": "background-2",
+    "sold_out_badge_color_scheme": "background-1",
+    "accent_icons": "text",
+    "page_width": "1200",
+    "social_facebook_link": "https:\/\/www.facebook.com\/Versus-HD-110357638122275",
+    "social_instagram_link": "http:\/\/instagram.com\/versus.hd\/",
+    "versus_header_font": "Rajdhani Regular",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "announcement-bar-0": {
+            "type": "announcement",
+            "disabled": true,
+            "settings": {
+              "text": "HAPPY HOLIDAYS SALE !! 30% OFF !! ALL PRODUCTS!!",
+              "color_scheme": "accent-2",
+              "link": ""
+            }
+          },
+          "1dea63ce-5593-4633-bf5a-f728f35835ba": {
+            "type": "announcement",
+            "disabled": true,
+            "settings": {
+              "text": "30% OFF AT  CHECKOUT ON ALL PRODUCTS !!! FREE SHIPPING WORLDWIDE!!! HAPPY HOLIDAYS",
+              "color_scheme": "background-2",
+              "link": ""
+            }
+          },
+          "411305f0-d8c4-48da-b0c5-f2cdd3e883a6": {
+            "type": "announcement",
+            "settings": {
+              "text": "30% OFF AT  CHECKOUT ON ALL PRODUCTS !!! FREE SHIPPING WORLDWIDE!!! HAPPY HOLIDAYS",
+              "color_scheme": "inverse",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "announcement-bar-0",
+          "1dea63ce-5593-4633-bf5a-f728f35835ba",
+          "411305f0-d8c4-48da-b0c5-f2cdd3e883a6"
+        ],
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "color_scheme": "background-2",
+          "logo": "shopify:\/\/shop_images\/Untitled_design_6.png",
+          "logo_width": 70,
+          "logo_position": "top-center",
+          "menu": "main-menu-left",
+          "show_line_separator": false,
+          "enable_sticky_header": true,
+          "enable_secondary_menu": true,
+          "secondary_menu": "main-menu-right"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Explore",
+              "menu": "footer-menu-explore"
+            }
+          },
+          "600a6178-022a-4162-9431-1a6eba7db56d": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Trending",
+              "menu": "footer-menu-popular-searches"
+            }
+          },
+          "44736074-2587-40c1-b0ba-cffa14d788e8": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Support",
+              "menu": "footer"
+            }
+          },
+          "3103638c-424b-4862-8e1a-cae50085c31b": {
+            "type": "image",
+            "disabled": true,
+            "settings": {
+              "image_width": 100,
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "600a6178-022a-4162-9431-1a6eba7db56d",
+          "44736074-2587-40c1-b0ba-cffa14d788e8",
+          "3103638c-424b-4862-8e1a-cae50085c31b"
+        ],
+        "settings": {
+          "color_scheme": "background-1",
+          "newsletter_enable": true,
+          "newsletter_heading": "Exclusive access for you",
+          "newsletter_text": "Sign up and receive 20% off your first order, our special offers and exciting new product arrivals",
+          "show_social": true,
+          "enable_country_selector": true,
+          "enable_language_selector": true,
+          "payment_enable": true,
+          "credits_text": "If you have any of your suggestions, questions or other matters relating to our business relationship, you may contact us at (+421) 940 973 088, send us a mail at our address below or you may contact us by email at: info@versushd.com. In case of complaints about the purchased goods, please follow the Complaints Procedure outlined in Returns and Refunds Policy section. \nVersusHD and www.versushd.com \nare owned and operated by Souleymane Doumouya - EPICC Lermontova 3, 811 05 Bratislava Slovak Republic ID number: 52591476 V.A.T.: 1121333719"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "18218067344242134805": {
+        "type": "shopify:\/\/apps\/product-reviews-ugc-with-q-a\/blocks\/app\/34006358-52bd-4ec7-8c78-200fe58b77ba",
+        "disabled": false,
+        "settings": {}
+      },
+      "1876356527693400185": {
+        "type": "shopify:\/\/apps\/shop-instagram-ugc\/blocks\/block.embed.socialshopwave-helper\/af4b13c8-5fdf-4065-8045-d1fe22f45f5a",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "colors_solid_button_labels": "#FFFFFF",
+      "colors_accent_1": "#121212",
+      "colors_accent_2": "#334FB4",
+      "colors_text": "#121212",
+      "colors_outline_button_labels": "#121212",
+      "colors_background_1": "#FFFFFF",
+      "colors_background_2": "#F3F3F3",
+      "type_header_font": "assistant_n4",
+      "type_body_font": "assistant_n4",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "announcement-bar-0": {
+              "type": "announcement",
+              "settings": {
+                "color_scheme": "background-1"
+              }
+            }
+          },
+          "block_order": [
+            "announcement-bar-0"
+          ],
+          "settings": {}
+        }
+      }
+    },
+    "Craft": {
+      "colors_solid_button_labels": "#EFECEC",
+      "colors_accent_1": "#2A332F",
+      "colors_accent_2": "#476154",
+      "colors_text": "#1C1A1A",
+      "colors_outline_button_labels": "#7B8382",
+      "colors_background_1": "#EFECEC",
+      "colors_background_2": "#C1BCAE",
+      "type_header_font": "americana_n4",
+      "type_body_font": "quattrocento_sans_n4",
+      "sections": {
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "menu": {
+              "type": "link_list",
+              "settings": {}
+            },
+            "text": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "menu",
+            "text"
+          ],
+          "settings": {
+            "color_scheme": "accent-1"
+          }
+        }
+      }
+    }
+  }
+}

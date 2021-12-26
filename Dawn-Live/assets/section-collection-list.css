@@ -1,0 +1,197 @@
+@media screen and (max-width: 749px) {
+  .collage-section + .collection-list-section .no-heading.no-mobile-link {
+    margin-top: -7rem;
+  }
+  .collage-section + .collection-list-section .no-heading:not(.no-mobile-link) {
+    margin-top: -1rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collage-section + .collection-list-section .no-heading {
+    margin-top: calc(-4rem - var(--page-width-margin));
+  }
+}
+
+.collection-list-title {
+  margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .collection-list-wrapper.page-width {
+    padding: 0;
+  }
+
+  .collection-list:not(.slider) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .collection-list-section .collection-list:not(.slider) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .collection-list-wrapper:not(.no-heading) .title-wrapper-with-link {
+    margin-top: -1rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-list-wrapper.no-heading {
+    margin-top: calc(6rem + var(--page-width-margin));
+  }
+}
+
+.collection-list__item:only-child {
+  max-width: 100%;
+  width: 100%;
+}
+
+.collection-list__item .card--light-border:hover {
+  border: 0.1rem solid rgba(var(--color-foreground), 0.04);
+}
+
+.collection-list__item:only-child .media {
+  height: 35rem;
+}
+
+@media screen and (max-width: 749px) {
+  .collection-list .collection-list__item {
+    width: calc(100% - 3rem);
+  }
+
+  .collection-list__item.grid__item {
+    padding-bottom: 1rem;
+  }
+
+  .slider.collection-list--1-items {
+    padding-bottom: 0;
+  }
+}
+
+.collection-list.negative-margin--small {
+  margin-bottom: -1rem;
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .slider.collection-list--1-items,
+  .slider.collection-list--2-items,
+  .slider.collection-list--3-items,
+  .slider.collection-list--4-items {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-list__item:only-child > *:not(.card--media) {
+    height: 320px;
+  }
+
+  .collection-list__item:only-child .media {
+    height: 47rem;
+  }
+
+  .collection-list__item a:hover {
+    box-shadow: none;
+  }
+
+  .collection-list.grid--3-col-tablet .grid__item {
+    max-width: 33.33%;
+  }
+
+  .collection-list--4-items .grid__item,
+  .collection-list--7-items .grid__item:nth-child(n + 4),
+  .collection-list--10-items .grid__item:nth-child(n + 7) {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .collection-list.slider .collection-list__item {
+    max-width: 100%;
+  }
+}
+
+.collection-list__item .card__text,
+.collection-list__item .card-colored {
+  position: relative;
+}
+
+.versushd-collection-list.collection-list-wrapper .collection-list {
+	padding: 10px;
+  	padding-top: 0;
+}
+
+.versushd-collection-list.collection-list-wrapper .collection-list .collection-list__item {
+	margin-left: 1rem;
+  	padding-left: 0;
+}
+
+.versushd-collection-list.collection-list-wrapper .collection-list .collection-list__item:nth-child(1) {
+
+}
+
+.versushd-collection-list.collection-list-wrapper {
+  background-color: #1c1c1c;
+}
+
+@media screen and (min-width: 990px) {
+  	.versushd-collection-list.collection-list-wrapper {
+		
+	}
+}
+
+.versushd-collection-list .title-wrapper-with-link {
+	padding: 17.5px 16.5px;
+  	position: relative;
+  	margin-bottom: 0;
+  	
+}
+
+.versushd-collection-list .title-wrapper-with-link a {
+    color: white;
+  	font-family: 'Rajdhani Light',sans-serif;
+    font-size: 22px;
+  text-decoration-thickness: 1px;
+    text-decoration-color: #ffffff99;
+}
+
+.versushd-collection-list .collection-list-title {
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-family: 'Rajdhani Light', sans-serif;
+  font-size: 30px
+}
+
+.versushd-collection-list .slider-buttons {
+	padding: 1.5rem 0;
+  	margin-top: -1rem;
+}
+
+.versushd-collection-list .slider-buttons .slider-button {
+  	background: #ffffff1c;
+    border-radius: 50%;
+}
+
+.versushd-collection-list .slider-buttons .slider-button .icon{
+	color: #000;
+}
+
+.versushd-collection-list .slider-buttons .slider-counter {
+	background: #ffffff1c;
+  	color: #000;
+  padding: 0px 4px;
+}
+
+.versushd-collection-list .view-all {
+  padding: 14px 0;
+}
+
+.versushd-collection-list .view-all a{
+  	line-height: normal;
+  font-family: 'Rajdhani Light', sans-serif;
+}

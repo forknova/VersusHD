@@ -1,0 +1,198 @@
+.xotix-social {
+	margin-top: 55px;
+}
+
+.image__img.lazyloaded {
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.image__img {
+    display: block;
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.social-proof__content {
+    position: relative;
+}
+
+.social-proof__slider-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.xotix-social .section__inner .versus-social-title {
+    padding: 0 1.5rem;
+  	margin: auto;
+    margin-bottom: 24px;
+}
+
+@media screen and (min-width: 750px) {
+  .xotix-social .section__inner .versus-social-title {
+      padding: 0 5rem;
+      max-width: var(--page-width);
+  }
+}
+
+/*@media (max-width: 720px) {*/
+  .xotix-social .section__inner .icon {
+    position: absolute;
+    top: 50%;
+    width: 48px;
+    height: 41px;
+    transition: opacity .3s ease-out, left .3s ease-out, right .3s ease-out;
+    -webkit-transition: opacity .3s ease-out, left .3s ease-out, right .3s ease-out;
+    background-color: #ffffff47;
+    color: black;
+  }
+
+  .xotix-social .section__inner .icon.left-nav {
+    display: block;
+    transform: translateY(-50%) rotate(90deg);
+    left: 0;
+    z-index: 2;
+  }
+
+  .xotix-social .section__inner .icon.left-nav.hidden {
+    opacity: 0;
+    left: -22px;
+  }
+
+  .xotix-social .section__inner .icon.right-nav {
+    display: block;
+    transform: translateY(-50%) rotate(-90deg);
+    right: 0px;
+    z-index: 2;
+  }
+
+  .xotix-social .section__inner .icon.right-nav.hidden {
+    opacity: 0;
+    right: -22px;
+  }
+
+  .social-proof__slider {
+    white-space: nowrap;
+    scrollbar-width: none;
+    transform: translateX(0);
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+    cursor: grab;      
+  }
+
+  .social-proof__slide{
+    display:inline-block;
+  }
+/*}*/
+
+.social-proof__slide {
+    width: 100%;
+    width: calc(100% / 3);
+    padding: 0;
+}
+
+@media (min-width: 45em) and (max-width: 60em){
+  .social-proof__slide{
+      width:25%
+  }
+}
+
+@media (min-width: 60em){
+  .social-proof--columns-2 .social-proof__slide{
+      width:50%
+  }
+  .social-proof--columns-3 .social-proof__slide{
+      width:calc(100% / 3)
+  }  
+  .social-proof--columns-4 .social-proof__slide{
+      width:25%
+  }
+  .social-proof--columns-5 .social-proof__slide{
+      width:20%
+  }
+  .social-proof--columns-6 .social-proof__slide{
+      width:calc(100% / 6)
+  }
+}
+
+.social-proof__slide:hover .icon{
+  transform:scale(1.2);
+}
+
+.social-proof--square .social-proof__image-wrapper {
+    padding-top: 100%;
+}
+
+.social-proof--landscape .social-proof__image-wrapper, 
+.social-proof--portrait .social-proof__image-wrapper, 
+.social-proof--square .social-proof__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.social-proof--landscape .social-proof__image, 
+.social-proof--portrait .social-proof__image, 
+.social-proof--square .social-proof__image {
+    height: 100%;
+    width: 100%;
+}
+.social-proof--landscape .social-proof__image, 
+.social-proof--portrait .social-proof__image, 
+.social-proof--square .social-proof__image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.social-proof__slide .xotix-social-overlay .icon {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 30px;
+    height: 30px;
+    color: #FFF;
+  	background-color: transparent;
+}
+
+#xotix-social-modal {
+  display: block; 
+  width: 100vw; height: 100vh; 
+  position: fixed; 
+  top:0; 
+  left: 0;
+  
+  opacity: 0; height: 0; z-index: -1;
+
+  transition: opacity .3s ease-out;
+}
+
+#xotix-social-modal .modal-overlay{
+  width:100%; height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+  position: absolute;
+}
+
+#xotix-social-modal .modal-navigation{
+  width: 100%;
+  height: 60px;
+  background-color: #FFF;
+  position: absolute;
+}  
+  
+#xotix-social-modal .modal-navigation .chevron-left .icon{
+  transform: rotate(90deg);
+}
+#xotix-social-modal .modal-navigation .chevron-right .icon{
+  transform: rotate(-90deg);
+}
+#xotix-social-modal .modal-navigation .modal-close{
+  float: right;
+}

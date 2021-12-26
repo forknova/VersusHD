@@ -1,0 +1,69 @@
+{
+  "sections": {
+    "1639960151ab120508": {
+      "type": "rich-text",
+      "disabled": true,
+      "blocks": {
+        "1639960151160a3413-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "GEMSTONES BRACELETS",
+            "heading_size": "h0"
+          }
+        },
+        "1639960151160a3413-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+          }
+        },
+        "1639960151160a3413-2": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "1639960151160a3413-0",
+        "1639960151160a3413-1",
+        "1639960151160a3413-2"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 24,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "add_image_padding": false,
+        "show_image_outline": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "collapse_on_larger_devices": true
+      }
+    }
+  },
+  "order": [
+    "1639960151ab120508",
+    "banner",
+    "product-grid"
+  ]
+}

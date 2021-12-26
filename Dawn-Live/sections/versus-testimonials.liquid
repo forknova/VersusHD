@@ -1,0 +1,301 @@
+{%- liquid
+  assign header_classes = 'section-header--large'
+
+  if section.settings.text_alignment == 'center'
+    assign header_classes = header_classes | append: ' section-header--center'
+  endif
+  
+  assign testimonialSize = section.blocks | size
+  assign testimonialPages = testimonialSize | divided_by: section.settings.columns
+-%}
+
+{{ 'component-versus-reviews.css' | asset_url | stylesheet_tag }}
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="testimonials"
+  class="
+    xotix-testimonials
+    testimonials
+    testimonials--columns-{{ section.settings.columns }}
+    section
+    {% if section.settings.section_contrast -%}
+      section--contrast
+    {%- endif %}
+  "
+  data-autoplay="{{ section.settings.duration_autoplay | times: 1000 }}"
+>
+  <div class="page-width">
+  <div class="section__inner">
+    {% assign iconUrl = "https://res.cloudinary.com/xotixdesigns/image/upload/icons/military/"|append: section.settings.heading_icon|append: '.svg' %}
+    <h3 class="testimonials-title">
+      <div class="medal icon" style="-webkit-mask-image: url({{ iconUrl }}); mask-image: url({{ iconUrl }}); margin: 0 {{ section.settings.icon_margin }}px;"></div>
+      {{ section.settings.heading }}
+      <div class="medal icon" style="-webkit-mask-image: url({{ iconUrl }}); mask-image: url({{ iconUrl }}); margin: 0 {{ section.settings.icon_margin }}px;"></div>
+    </h3>
+
+    <div class="testimonials-container">
+      {%- for block in section.blocks -%}
+        {%- render 'testimonials-item' with
+          columns: section.settings.columns,
+          heading: block.settings.heading,
+          testimonial: block.settings.testimonial,
+          author: block.settings.author,
+          text_max_width: block.settings.text_max_width,
+     	  review_rating: block.settings.review_rating,
+      	  rating_icon: section.settings.rating_icon
+        -%}
+      {%- endfor -%}
+    </div>
+    <div class="testimonials-navigation-dots">
+      {%- for column in (1..testimonialPages) -%}
+      	<div class="nav-dot"></div>
+	  {%- endfor -%}
+    </div>
+  </div>
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Versus Reviews Slideshow",
+    "tag": "section",
+    "class": "shopify-section--stackable shopify-section--text-first",
+    "settings": [
+      {
+        "type": "range",
+        "id": "columns",
+        "label": "Columns per row",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading"
+      },
+      {
+        "id": "subheading",
+        "type": "richtext",
+        "label": "Subheading"
+      },
+      {
+        "type": "select",
+        "id": "heading_icon",
+        "label": "Heading Icon",
+        "default": "v-medal1",
+        "options": [
+          {
+            "value": "chevron-double-trans",
+            "label": "chevron-double-trans"
+          },
+          {
+            "value": "chevron-medal1",
+            "label": "chevron-medal1"
+          },
+          {
+            "value": "chevron-triple-star-trans",
+            "label": "chevron-triple-star-trans"
+          },
+          {
+            "value": "star-medal-trans1",
+            "label": "star-medal-trans1"
+          },
+          {
+            "value": "star-medal-trans2",
+            "label": "star-medal-trans2"
+          },
+          {
+            "value": "star-medal-trans3",
+            "label": "star-medal-trans3"
+          },
+          {
+            "value": "star-medal1",
+            "label": "star-medal1"
+          },
+          {
+            "value": "star-medal2",
+            "label": "star-medal2"
+          },
+          {
+            "value": "star-medal3",
+            "label": "star-medal3"
+          },
+          {
+            "value": "star-medal4",
+            "label": "star-medal4"
+          },
+          {
+            "value": "target-crosshair-trans1",
+            "label": "target-crosshair-trans1"
+          },
+          {
+            "value": "target-crosshair1",
+            "label": "target-crosshair1"
+          },
+          {
+            "value": "v-medal-trans1",
+            "label": "v-medal-trans1"
+          },
+          {
+            "value": "v-medal-trans2",
+            "label": "v-medal-trans2"
+          },
+          {
+            "value": "v-medal1",
+            "label": "v-medal1"
+          },
+          {
+            "value": "v-medal2",
+            "label": "v-medal2"
+          },
+          {
+            "value": "v-medal3",
+            "label": "v-medal3"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "rating_icon",
+        "label": "Rating Icon",
+        "default": "skull2",
+        "options": [
+          {
+            "value": "skull1",
+            "label": "skull1"
+          },
+          {
+            "value": "skull2",
+            "label": "skull2"
+          },
+          {
+            "value": "skull3",
+            "label": "skull3"
+          },
+          {
+            "value": "skull-trans1",
+            "label": "skull-trans1"
+          },
+          {
+            "value": "skull-trans2",
+            "label": "skull-trans2"
+          },
+          {
+            "value": "skull-color1",
+            "label": "skull-color1"
+          },
+          {
+            "value": "skull-color2",
+            "label": "skull-color2"
+          }
+        ]
+      },
+	  {
+		"type": "range",
+        "id": "icon_margin",
+        "label": "Icon Margin",
+        "unit": "px",
+        "min": 4,
+        "max": 60,
+        "step": 2,
+        "default": 10
+	  },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "duration_autoplay",
+        "label": "Autoplay Duration",
+        "unit": "s",
+        "min": 0,
+        "max": 10,
+        "step": 2,
+        "default": 4
+      },
+      {
+        "id": "section_contrast",
+        "type": "checkbox",
+        "label": "Use alternate section color",
+        "default": false
+      }
+    ],
+    "max_blocks": 8,
+    "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Review",
+        "settings": [
+          {
+            "type": "range",
+            "id": "review_rating",
+            "label": "Review Rating",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "default": 5
+          },
+          {
+            "id": "heading",
+            "type": "text",
+            "label": "Heading",
+            "default": "Amazing product!"
+          },
+          {
+            "id": "testimonial",
+            "type": "richtext",
+            "label": "Review",
+            "default": "<p>\"Add customer reviews and testimonials to showcase your store’s happy customers.\"</p>"
+          },
+          {
+            "id": "author",
+            "type": "text",
+            "label": "Author",
+            "default": "Author's name"
+          },
+          {
+            "type": "range",
+            "id": "text_max_width",
+            "label": "Max width of text",
+            "min": 24,
+            "max": 48,
+            "step": 1,
+            "default": 42
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Versus Reviews Slideshow",
+        "blocks": [
+          {
+            "type": "testimonial"
+          },
+          {
+            "type": "testimonial"
+          },
+          {
+            "type": "testimonial"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
