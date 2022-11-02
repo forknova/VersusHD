@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "subtitle": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "column": "right",
+            "accordion_default": "open"
+          }
+        },
+        "f8196964-ba2c-4900-9c4b-48572a80fdeb": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "column": "left",
+            "style": "open",
+            "heading": "Description",
+            "content": "<p><strong>The Shawan is a great powerful ally in desperate times<\/strong>. His skills on the Battlefield are unmatched.Affront all your challenges head on and turn fear into self empowerment with the C-1000 Alpha 2. Get Yours Now!!!<\/p><p><\/p>",
+            "css_classes": "description"
+          }
+        },
+        "4a3ef586-2916-4dd2-b3ed-c37d445c28a5": {
+          "type": "accordion",
+          "settings": {
+            "column": "right",
+            "style": "open",
+            "heading": "Unique Attributes",
+            "content": "",
+            "css_classes": "attributes"
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "subtitle",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "f8196964-ba2c-4900-9c4b-48572a80fdeb",
+        "4a3ef586-2916-4dd2-b3ed-c37d445c28a5",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "hide_variants": false,
+        "enable_video_looping": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false,
+        "show_rating": false
+      }
+    },
+    "pf-31878ba2": {
+      "type": "pf-31878ba2",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations",
+    "pf-31878ba2"
+  ]
+}

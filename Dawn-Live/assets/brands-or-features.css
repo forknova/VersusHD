@@ -1,0 +1,51 @@
+.brands-or-features .title, .brands-or-features .title-wrapper-with-link {
+	margin-bottom: 1rem;
+}
+@media screen and (min-width: 990px) {
+	.brands-or-features .title, .brands-or-features .title-wrapper-with-link {
+    	margin: 5rem 0 0rem;
+	}
+}
+
+.brands-or-features .brands-or-features__container {
+	display: flex;
+}
+
+.brands-or-features .brands-or-features__item {
+	flex: 1;
+	text-align: center;
+}
+
+.brands-or-features .link-wrapper {
+	text-decoration: none;
+	transition: opacity .3s ease-in-out;
+}
+
+.brands-or-features .link-wrapper:hover {
+	opacity: 0.75;
+}
+
+.brands-or-features .image-wrapper {
+	position: relative;
+    padding-top: 60%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.brands-or-features .image__img {
+    object-fit: contain;
+}
+
+.brands-or-features .brands-or-features__item-title,
+.brands-or-features .brands-or-features__item-subtitle {
+	margin: 0;
+}
+
+.brands-or-features .brands-or-features__item-title {
+	font-family: 'Rajdhani SemiBold', sans-serif;
+}
+
+.brands-or-features .brands-or-features__item-subtitle {
+	margin-top: 10px;
+	opacity: 0.7;
+}

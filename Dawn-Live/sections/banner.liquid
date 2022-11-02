@@ -1,0 +1,262 @@
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign dot_count = section.blocks.size
+  assign css_class = section.settings.css_class
+  assign banner_count = section.settings.columns
+
+  if block_id
+    assign dot_count = 0
+  endif
+
+  if slide_1_desktop_image != blank or slide_1_mobile_image != blank
+    assign dot_count = dot_count | plus: 1
+  endif
+
+  if slide_2_desktop_image != blank or slide_2_mobile_image != blank
+    assign dot_count = dot_count | plus: 1
+  endif
+-%}
+
+<div
+  class="banner {{ css_class }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="banner"
+  style="
+    --desktop-height: {{  section.settings.desktop_height }}vh;
+    --mobile-height: {{ section.settings.mobile_height }}vh;
+  "
+>
+  <div class="page-width">
+    
+    <div
+      class="banner-container banner-cols-{{banner_count}}"
+    >
+      {%- for block in section.blocks -%}
+        {% if forloop.index > banner_count %} {% break %} {% endif %}
+        {%- render 'banner-item' with
+          block: block,
+          forloop: forloop,
+
+          desktop_image: block.settings.desktop_image,
+          mobile_image: block.settings.mobile_image,
+
+          heading: block.settings.heading,
+          subheading: block.settings.subheading,
+          shop_text: block.settings.shop_text,
+          link: block.settings.link,
+
+          alignment: block.settings.alignment,
+          content_order: block.settings.content_order,
+          content_padding: block.settings.content_padding,
+          heading_text_size: block.settings.heading_text_size,
+          overlay_shadow: block.settings.overlay_shadow,
+          color_text: block.settings.color_text,
+          color_text_button: block.settings.color_text_button,
+          color_background_button: block.settings.color_background_button,
+          color_overlay: block.settings.color_overlay,
+          overlay_opacity: block.settings.overlay_opacity,
+        -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "tag": "section",
+    "class": "shopify-section--stackable shopify-section--contrast offset-section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "columns",
+        "label": "Columns",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "desktop_height",
+        "label": "Desktop Height",
+        "unit": "%",
+        "min": 20, 
+        "max": 50,
+        "step": 2,
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "mobile_height",
+        "label": "Mobile Height",
+        "unit": "%",
+        "min": 20,
+        "max": 50,
+        "step": 2,
+        "default": 50
+      },
+  	  {
+    		"type": "text",
+    		"id": "css_class",
+    		"label": "CSS class (separate by space)"
+  	  }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "limit": 6,
+        "settings": [
+          {
+            "id": "desktop_image",
+            "type": "image_picker",
+            "label": "Desktop image (Landscape preferred)"
+          },
+          {
+            "id": "mobile_image",
+            "type": "image_picker",
+            "label": "Mobile image (Portrait preferred)"
+          },
+          {
+            "id": "link",
+            "type": "url",
+            "label": "Link"
+          },
+          {
+            "id": "heading",
+            "type": "richtext",
+            "label": "Heading",
+            "default": "<p>Heading</p>"
+          },
+          {
+            "id": "subheading",
+            "type": "richtext",
+            "label": "Subheading",
+            "default": "<p>Use this section to make a bold statement</p>"
+          },
+          {
+            "id": "shop_text",
+            "type": "text",
+            "label": "Shop Text",
+            "default": "Learn more"
+          },
+          {
+            "type": "header",
+            "content": "DESIGN"
+          },       
+          {
+            "id": "alignment",
+            "type": "select",
+            "label": "Text alignment",
+            "options": [
+              { "label": "Top Left", "value": "left_top" },
+              { "label": "Top Center", "value": "center_top" },
+              { "label": "Top Right", "value": "right_top" },
+              { "label": "Center Left", "value": "left_center" },
+              { "label": "Center Center", "value": "center_center" },
+              { "label": "Center Right", "value": "right_center" },
+              { "label": "Bottom Left", "value": "left_bottom" },
+              { "label": "Bottom Center", "value": "center_bottom" },
+              { "label": "Bottom Right", "value": "right_bottom" }
+            ],
+            "default": "center_center"
+          },   
+          {
+            "id": "content_order",
+            "type": "select",
+            "label": "Content Order", 
+            "options": [
+              { "label": "1.Heading/2.Subheading/3.ShopText", "value": "first_second_third" },
+              { "label": "1.Heading/2.Subheading/3.ShopText", "value": "first_third_second" },
+              { "label": "1.Subheading/2.Heading/3.ShopText", "value": "second_first_third" },
+              { "label": "1.Subheading/2.ShopText/3.Heading", "value": "second_third_first" },
+              { "label": "1.ShopText/2.Heading/3.Subheading", "value": "third_first_second" },
+              { "label": "1.ShopText/2.Subheading/3.Heading", "value": "third_second_first" }
+            ],
+            "default": "second_first_third"
+          },   
+          {
+            "id": "content_padding",
+            "type": "range",
+            "label": "Content Padding",
+            "unit": "%",
+            "min": 2,
+            "max": 25,
+            "step": 1,
+            "default": 11
+          },          
+          {
+            "id": "heading_text_size",
+            "type": "range",
+            "label": "Heading Text size",
+            "unit": "px",
+            "min": 48,
+            "max": 72,
+            "step": 2,
+            "default": 64
+          },
+          {
+            "type": "range",
+            "id": "overlay_shadow",
+            "label": "Overlay Shadow",
+            "unit": "%",
+            "min": 0,
+            "max": 60,
+            "step": 5,
+            "default": 10
+          },
+          {
+            "id": "color_text",
+            "type": "color",
+            "label": "Text Color",
+            "default": "#ffffff"
+          },
+          {
+            "id": "color_text_button",
+            "type": "color",
+            "label": "Button Color",
+            "default": "#181818"
+          },
+          {
+            "id": "color_background_button",
+            "type": "color",
+            "label": "Background Button Color",
+            "default": "#FFFFFF"
+          },
+          {
+            "id": "color_overlay",
+            "type": "color",
+            "label": "Overlay Color",
+            "default": "#000"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Overlay Opacity",
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 30
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "blocks": [
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

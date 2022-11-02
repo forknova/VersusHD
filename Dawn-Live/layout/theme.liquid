@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
-  <head>
+  <head>{% render 'pagefly-head' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -142,7 +142,8 @@
     <script src="{{ 'anyPage.js' | asset_url }}"></script>
 	<script type='text/javascript' src='https://propeller-tracking.com/fv.js?t=101570'></script>
     
-  </head>
+    {% render 'judgeme_core' %}
+</head>
 
   <body class="gradient">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -190,5 +191,12 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  </body>
+  {% render 'banana-stand-footer' %}
+  {% include 'revy-bundle-script' %}
+
+<!-- spurit_um-added -->
+{% render 'spurit_um-theme-snippet' %}
+<!-- /spurit_um-added -->
+
+</body>
 </html>

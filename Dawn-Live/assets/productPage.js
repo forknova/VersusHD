@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   //alert('productPage script loaded');
   
+  const SCREEN_SIZE = window.innerWidth;
+
   /* Remove "0 Review" from recommended products */
   
   setTimeout(function(){ 
@@ -59,4 +61,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     })
   }
+
+  // Product View Count
+  let $viewCount = document.querySelector('.product__view-count .count');
+  if ($viewCount) {
+    let maxViewCount = $viewCount.parentElement.dataset.counter;
+    let randCount = Math.floor((Math.random() * maxViewCount) + 1);
+    $viewCount.textContent = $viewCount.textContent.replace("2", randCount); 
+    $viewCount.parentElement.dataset.counter = randCount;
+  }
+  
 })

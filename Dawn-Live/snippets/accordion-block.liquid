@@ -1,17 +1,45 @@
-{% if heading contains "Unique Attributes" %}
-	{% assign attributes_accordion = true %}
-{% endif %}
 {% liquid
+	if heading contains "Unique Attributes" 
+		assign attributes_accordion = true 
+	endif 
+ 
 	if accordion_default == 'open'
     	assign open_accordion = true
     endif
 %}
 <style>
+  .accordion .properties-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .accordion .accordion-wrapper.accordion-icon {
+    color: #838383;
+    height: 25px;
+    width: 25px;
+  }
+  .accordion.open .accordion-wrapper.accordion-icon.plus, 
+  .accordion.closed .accordion-wrapper.accordion-icon.minus {
+    display: none;
+  }
+
+  .accordion.closed .accordion-wrapper.accordion-icon.plus, 
+  .accordion.open .accordion-wrapper.accordion-icon.minus {
+    display: block;
+  }
+  
+  .accordion .property-row.group { order: 0; }
+  .accordion .property-row.squad { order: 1; }
+  .accordion .property-row.field-name { order: 2; }
+  .accordion .property-row.lifestone { order: 3; }
+  .accordion .property-row.skills { order: 4; }
+  .accordion .property-row.motto { order: 5; }
+  .accordion .property-row.special-attributes { order: 6; }
+
   .accordion .property-row{
   	text-transform: capitalize;
     margin: 0;
-    margin-bottom: 18px;
-    font-size: 0;
+    margin-bottom: 14px;
   }
   
   .accordion .property-swatch {
@@ -26,9 +54,7 @@
   .accordion .property-swatch.stone {
     background-position: center center;
     background-repeat: no-repeat;
-    margin: 0;
-    margin-left: 8px;
-    margin-right: 2px;
+    margin: 0 2px;
   }
   
   .accordion .property-swatch.energy {
@@ -41,7 +67,16 @@
   	margin-left: 6px;
     font-size: 16px;
     vertical-align: middle;
-      white-space: nowrap;
+    white-space: nowrap;
+    font-family: 'Rajdhani Light';
+    font-weight: 600;
+
+  }
+
+  .accordion .property-row span.title{
+    font-family: 'Rajdhani Bold', sans-serif;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
   
 </style>
@@ -56,49 +91,51 @@
     >
       <a class="accordion__label" href="#">
         {{ heading }}
-        {%- render 'icon-xotix' with icon: 'triangle', class: 'accordion-icon' -%}
+        
+        <div class="accordion-wrapper accordion-icon plus">
+        	{%- render 'icon-plus' with class: 'accordion-icon' -%}
+        </div>
+        <div class="accordion-wrapper accordion-icon minus">
+        	{%- render 'icon-minus' with class: 'accordion-icon' -%}
+        </div>
+
+    
       </a>
       <div class="accordion__text{% if small_text %} fs-body-small{% endif %}">
         {{ content }}
 
-          <div class="properties-content">
-            <div class="property-row">
-              {% if product.metafields.color != blank %}
-              <span>Lifestone:</span> 
-                {%- for field in product.metafields.color -%}
-                    <span><div class="property-swatch energy" style="background-color: {{ field | last }}"></div> {{ field | first }}</span>
-                {%- endfor -%}    
-              {% endif %}
-            </div> 
-            <div class="property-row">
-              {% if product.metafields.global_lifestone != blank %}
-                <span><b>Lifestone:</b></span>	
-                {%- for field in product.metafields.global_lifestone -%}
-                    <span><div class="property-swatch stone" style="background-image: url('https://res.cloudinary.com/xotixdesigns/image/upload/w_50,h_50/stones_swatches/{{ field | first }}.jpg');"></div> {{ field | last }}</span>
-                {%- endfor -%}
-              {% endif %}
-            </div>
-            <div class="property-row">
-              {% if product.metafields.accessory != blank %}
-                <span>Accessory:</span>
-                {%- for field in product.metafields.accessory -%}
-                  {% if forloop.first == true %}
-                      <span>{{ field | last }}</span>
-                  {% else %}
-                      <span>| {{ field | last }}</span>
-                  {% endif %}
-                {%- endfor -%}
-              {% endif %}
-            </div>
-            <div class="property-row">
-              {% if product.metafields.bead-size != blank %}
-                <span>Bead size:</span>	
-                {%- for field in product.metafields.bead-size -%}
-                    <span>{{ field | last }}</span>
-                {%- endfor -%}
-              {% endif %}
-            </div>
+          <div class="properties-container">
+            {% if product.metafields.bracelet_attributes != blank %}
+              {%- for field in product.metafields.bracelet_attributes -%}
 
+                {% assign field_key = field.first | downcase %}
+                {% assign field_class = field_key | replace: ' ', '-' %}
+
+                <div class="property-row {{ field_class }}">
+                {%- case field_key -%}
+
+                {%- when 'lifestone' -%}
+                    <span class="title">{{ field | first }}:</span>  
+                    {% assign stones_array = field | last | split: ',' %}
+                    {%- for each_stone in stones_array -%}
+                      {% assign stone_name = each_stone | replace: '-', ' ' %}
+                      <span><div class="property-swatch stone" style="background-image: url('https://res.cloudinary.com/xotixdesigns/image/upload/w_50,h_50/stones_swatches/{{ each_stone }}.jpg');"></div> {{ stone_name }}</span>
+                    {%- endfor -%}
+
+                {%- when 'special attributes' -%}
+                    <span class="title">{{ field | first }}: </span>
+                    {% assign special_array = field | last | split: ',' %}
+                    {%- for each_attribute in special_array -%}
+                      <span>{{ each_attribute }}{% if forloop.last == true %}{% else %},{% endif %}</span>
+                    {%- endfor -%}
+
+                {% else %}
+                    <span class="title">{{ field | first }}: </span><span>{{field | last}}</span>
+                {% endcase %}
+                </div>
+
+              {%- endfor -%}    
+            {% endif %}
           </div>
 
       </div>
@@ -116,7 +153,13 @@
   >
     <a class="accordion__label" href="#">
       {{ heading }}
-      {%- render 'icon-xotix' with icon: 'triangle', class: 'accordion-icon' -%}
+      
+      <div class="accordion-wrapper accordion-icon plus">
+        {%- render 'icon-plus' with class: 'accordion-icon' -%}
+      </div>
+      <div class="accordion-wrapper accordion-icon minus">
+      	{%- render 'icon-minus' with class: 'accordion-icon' -%}
+      </div>
     </a>
     <div class="accordion__text{% if small_text %} fs-body-small{% endif %}">
       {{ content }}

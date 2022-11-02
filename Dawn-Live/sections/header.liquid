@@ -81,7 +81,9 @@
 </svg>
 <{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   <header class="header header--{{ section.settings.logo_position }} page-width{% if section.settings.menu != blank %} header--has-menu{% endif %} {% if section.settings.enable_secondary_menu %} header--has-secondary{%endif%} ">
+    
     {%- if section.settings.menu != blank -%}
+    <!-- HEADER BURGER-->
       <header-drawer data-breakpoint="tablet">
         <details class="menu-drawer-container">
           <summary class="header__icon header__icon--menu header__icon--summary link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
@@ -154,6 +156,69 @@
                         {%- endif -%}
                       </li>
                     {%- endfor -%}
+
+                    {%comment%} SECONDARY MENU IN BURGER {%endcomment%}
+                    {% if section.settings.enable_secondary_menu %}
+                    {%- for link in section.settings.secondary_menu.links -%}
+                      <li>
+                        {%- if link.links != blank -%}
+                          <details>
+                            <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
+                              {{ link.title | escape }}
+                              {% render 'icon-arrow' %}
+                              {% render 'icon-caret' %}
+                            </summary>
+                            <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu motion-reduce" tabindex="-1">
+                              <div class="menu-drawer__inner-submenu">
+                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                  {% render 'icon-arrow' %}
+                                  {{ link.title | escape }}
+                                </button>
+                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                  {%- for childlink in link.links -%}
+                                    <li>
+                                      {%- if childlink.links == blank -%}
+                                        <a href="{{ childlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                          {{ childlink.title | escape }}
+                                        </a>
+                                      {%- else -%}
+                                        <details>
+                                          <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                            {{ childlink.title | escape }}
+                                            {% render 'icon-arrow' %}
+                                            {% render 'icon-caret' %}
+                                          </summary>
+                                          <div id="childlink-{{ childlink.title | escape }}" class="menu-drawer__submenu motion-reduce">
+                                            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                              {% render 'icon-arrow' %}
+                                              {{ childlink.title | escape }}
+                                            </button>
+                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                              {%- for grandchildlink in childlink.links -%}
+                                                <li>
+                                                  <a href="{{ grandchildlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
+                                                    {{ grandchildlink.title | escape }}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            </ul>
+                                          </div>
+                                        </details>
+                                      {%- endif -%}
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            </div>
+                          </details>
+                        {%- else -%}
+                          <a href="{{ link.url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
+                            {{ link.title | escape }}
+                          </a>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                    {%- endif -%}
                   </ul>
                 </nav>
                 <div class="menu-drawer__utility-links">
@@ -326,33 +391,53 @@
       </details-modal>
     {%- endif -%}
 
-	{% if section.settings.enable_secondary_menu %}
+    {% if section.settings.enable_secondary_menu %}
+    {% comment %} 
+      SECONDARY LEFT MENU, wrap logo 
+    {% endcomment %} 
       <div class="header__menu-wrapper">
+        
       <nav class="header__left-menu">
-        <ul class="list-menu list-menu--inline" role="list">
+        <ul class="list-menu list-menu--inline" role="list" level="1">
           {%- for link in section.settings.menu.links -%}
             <li>
               {%- if link.links != blank -%}
                 <details-disclosure>
                   <details>
-                    <summary class="header__menu-item list-menu__item link focus-inset">
+                    <summary class="header__menu-item list-menu__item link focus-inset header__submenu-title" level="2">
                       <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                       {% render 'icon-caret' %}
                     </summary>
-                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
+                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1" level="2">
                       {%- for childlink in link.links -%}
-                        <li>
+                        <li class="not-active">
                           {%- if childlink.links == blank -%}
                             <a href="{{ childlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
                               {{ childlink.title | escape }}
                             </a>
                           {%- else -%}
-                            <details>
-                              <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large">
-                                {{ childlink.title | escape }}
-                                {% render 'icon-caret' %}
+                            {% assign lowcase_menutitle = link.title | downcase %}
+                            {% assign lowcase_submenutitle = childlink.title | downcase %}
+
+                            {% comment %}
+                              SUBMENU BKG PICTURES
+                            {% endcomment %}
+              {% comment %}{% raw %}
+                            {% if lowcase_menutitle contains "versus" %}
+                              {% unless lowcase_submenutitle contains "about" %}  
+              {% endraw %} {% endcomment %}
+                              {% assign img_url = "https://res.cloudinary.com/xotixdesigns/image/upload/v1640467885/background/versus/navigation-bkg/" |append: lowcase_submenutitle |append: '.jpg' %}
+                              {% assign img_url = "https://res.cloudinary.com/xotixdesigns/image/upload/v1/background/versus/navigation-bkg/" |append: lowcase_submenutitle |append: '.jpg' %}
+                              <img class="submenu-item-bkg" src="{{ img_url }}" onerror="this.style.display='none'"/>
+              {% comment %}{% raw %}
+                              {% endunless %}
+                            {%- endif -%}
+              {% endraw %} {% endcomment %}
+                            <details open>
+                              <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large header__submenu-title" level="3">
+                                <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
                               </summary>
-                              <ul class="header__submenu list-menu motion-reduce">
+                              <ul class="header__submenu list-menu motion-reduce" level="3">
                                 {%- for grandchildlink in childlink.links -%}
                                   <li>
                                     <a href="{{ grandchildlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
@@ -401,19 +486,20 @@
       </h1>
     {%- endif -%}
         
-	{% if section.settings.enable_secondary_menu %}
-      <nav class="header__left-menu">
-        <ul class="list-menu list-menu--inline" role="list">
+  {% if section.settings.enable_secondary_menu %}
+  <!-- SECONDARY RIGHT MENU, wrap logo --> 
+      <nav class="header__right-menu">
+        <ul class="list-menu list-menu--inline" role="list" level="1">
           {%- for link in section.settings.secondary_menu.links -%}
             <li>
               {%- if link.links != blank -%}
                 <details-disclosure>
-                  <details>
-                    <summary class="header__menu-item list-menu__item link focus-inset">
+                  <details open>
+                    <summary class="header__menu-item list-menu__item link focus-inset header__submenu-title" level="2">
                       <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                       {% render 'icon-caret' %}
                     </summary>
-                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
+                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1" level="2">
                       {%- for childlink in link.links -%}
                         <li>
                           {%- if childlink.links == blank -%}
@@ -421,12 +507,12 @@
                               {{ childlink.title | escape }}
                             </a>
                           {%- else -%}
-                            <details>
-                              <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large">
+                            <details open>
+                              <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large header__submenu-title" level="3">
                                 {{ childlink.title | escape }}
                                 {% render 'icon-caret' %}
                               </summary>
-                              <ul class="header__submenu list-menu motion-reduce">
+                              <ul class="header__submenu list-menu motion-reduce" level="3">
                                 {%- for grandchildlink in childlink.links -%}
                                   <li>
                                     <a href="{{ grandchildlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
@@ -455,7 +541,7 @@
       </div>
     {%- endif -%}
         
-    {%- if section.settings.menu != blank -%}
+    {%- if section.settings.menu != blank and section.settings.enable_secondary_menu == false -%}
       <nav class="header__inline-menu">
         <ul class="list-menu list-menu--inline" role="list">
           {%- for link in section.settings.menu.links -%}
@@ -467,7 +553,7 @@
                       <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                       {% render 'icon-caret' %}
                     </summary>
-                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
+                    <ul class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1" level="1">
                       {%- for childlink in link.links -%}
                         <li>
                           {%- if childlink.links == blank -%}
@@ -837,7 +923,7 @@
       "info": "t:sections.header.settings.enable_sticky_header.info"
     },
     {
-	  "type": "header",
+    "type": "header",
       "content": "Secondary menu"
     },
     {
@@ -847,7 +933,7 @@
       "label": "Enable secondary menu",
       "info": "Enable Left and Right inline menu"        
     },
-	{
+  {
       "type": "link_list",
       "id": "secondary_menu",
       "label": "Secondary menu"

@@ -20,6 +20,10 @@
   
   <div class="card-information">
     <div class="card-information__wrapper">
+{% comment %}Start automatically added Judge.me widget{% endcomment %}
+  {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product_card_product %}
+{% comment %}End automatically added Judge.me widget{% endcomment %}
+
       {%- if show_vendor -%}
         <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
         <div class="caption-with-letter-spacing light">{{ product_card_product.vendor }}</div>
@@ -64,8 +68,7 @@
       <a href="{{ product_card_product.url | default: '#' }}" class="full-unstyled-link">
       {% render 'price', product: product_card_product, price_class: '' %}
       </a>
-      
-     </div>
+</div>
     
   </div>
     
@@ -141,10 +144,12 @@
       </div>
     </div>
    	<div data-hulkapps-reviews data-hulkapps-reviews-product-id="{{ product_card_product.id }}" class="h5"></div>
-    </a>
-  </div>
+      {% render 'banana-stand-product-list-container', product: product_card_product %}
+</a>
+</div>
   <form method="post" action="/cart/add">
     <input name="id" value="{{ product_card_product.variants.first.id }}" type="hidden" />
     <input name="add" value="ADD TO CART" type="submit" class="add-to-cart-btn"/>
   </form>
 </div>
+

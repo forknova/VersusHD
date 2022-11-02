@@ -5,7 +5,7 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
 {% if page.handle == 'shop-instagram'%}
-<div class="page-width page-width--narrow {{ page.handle }}">
+<div class="page-width page-width--narrow page {{ page.handle }}">
   <div class="rte">
       {{ page.content }}
   </div>
@@ -13,7 +13,7 @@
 
 {% else %}
 
-<div class="page-width page-width--narrow {{ page.handle }}">
+<div class="page-width page-width--narrow page {{ page.handle }}">
   <h1 class="main-page-title page-title h0">
     {{ page.title | escape }}
   </h1>

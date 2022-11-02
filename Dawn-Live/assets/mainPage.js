@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log('mainPage.js');
+  //console.log('mainPage.js');
   
   const isDesktop = window.innerWidth > 900 ? true : false;
   
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if (isDesktop) {
     const $sliders = document.querySelectorAll('.slider-mobile-gutter .slider');
     for(let i=0; i<$sliders.length; i++) {
-
+console.log($sliders[i]);
       let isDown = false;
       let startX;
       let scrollLeft;
@@ -153,4 +153,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
   }
   
+  /* Featured Collection Table */
+
+  const $featuredColTables = document.querySelectorAll('.featured-collection-table');
+  for (let i = 0; i < $featuredColTables.length; i++) {
+
+    const $tabs = $featuredColTables[i].querySelectorAll('.table-navigation .tab-selector');
+    for (let j = 0; j < $tabs.length; j++) {
+      $tabs[j].addEventListener('click', (e) => {
+console.log('tab clicked');
+        const $selectedElems = $featuredColTables[i].querySelectorAll('.selected');
+        for (let n = 0; n < $selectedElems.length; n++) {
+          $selectedElems[n].classList.remove('selected');
+        }
+
+        e.currentTarget.classList.add('selected');
+        const collectionId = $tabs[j].dataset.collectionId;
+
+        const $selectFeaturedColl = $featuredColTables[i].querySelector('.featured-collection-table__collection[data-collection-id="'+collectionId+'"]');
+        $selectFeaturedColl.classList.add('selected');
+      })
+    }
+
+  }
+
 })

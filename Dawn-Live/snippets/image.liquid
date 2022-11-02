@@ -1,3 +1,6 @@
+{{ 'image.css' | asset_url | stylesheet_tag }}
+
+
 {%- liquid
   assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
   assign height = image.height | times: 1.0 | default: 1.0

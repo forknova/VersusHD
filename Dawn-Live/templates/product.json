@@ -25,6 +25,20 @@
           "type": "price",
           "settings": {}
         },
+        "c67c7eaf-fa73-4b77-bd9e-60dff338de4d": {
+          "type": "product_view_count",
+          "settings": {
+            "view_count_text": "people are viewing this product",
+            "max_view_count": 11
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "column": "right",
+            "accordion_default": "open"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -41,17 +55,11 @@
             "show_dynamic_checkout": true
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {
-            "accordion_default": "open"
-          }
-        },
         "f8196964-ba2c-4900-9c4b-48572a80fdeb": {
           "type": "accordion",
           "disabled": true,
           "settings": {
-            "column": "left",
+            "column": "right",
             "style": "open",
             "heading": "Description",
             "content": "<p><strong>The Shawan is a great powerful ally in desperate times<\/strong>. His skills on the Battlefield are unmatched.Affront all your challenges head on and turn fear into self empowerment with the C-1000 Alpha 2. Get Yours Now!!!<\/p><p><\/p>",
@@ -62,7 +70,7 @@
           "type": "accordion",
           "settings": {
             "column": "left",
-            "style": "closed",
+            "style": "open",
             "heading": "Unique Attributes",
             "content": "",
             "css_classes": "attributes"
@@ -81,10 +89,11 @@
         "title",
         "subtitle",
         "price",
+        "c67c7eaf-fa73-4b77-bd9e-60dff338de4d",
+        "description",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description",
         "f8196964-ba2c-4900-9c4b-48572a80fdeb",
         "4a3ef586-2916-4dd2-b3ed-c37d445c28a5",
         "share"
@@ -99,8 +108,8 @@
       "type": "product-recommendations",
       "settings": {
         "heading": "You may also like",
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
+        "image_ratio": "square",
+        "show_secondary_image": true,
         "add_image_padding": false,
         "show_image_outline": true,
         "show_vendor": false,

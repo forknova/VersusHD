@@ -33,6 +33,7 @@
 @media screen and (min-width: 750px) {
   .collage {
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }
 
@@ -521,8 +522,15 @@
 
 .collage-content h3 {
 	z-index: 1;
-  	font-size: 20px;
-  	color: #FFF
+  font-size: 20px;
+  color: #FFF;
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .collage-content h3 {
+    font-size: 24px;
+  }
 }
 
 .collage-card.collage-card--left .collage-content h3,
@@ -550,7 +558,7 @@
   	content: "";
     position: absolute;
     width: 100%;
-    background: rgb(0 0 0 / 60%);
+    background: rgb(0 0 0 / 35%);
     height: 100%;
   	top: 0;
   	left: 0;
@@ -559,5 +567,23 @@
 
 .collage-card.collage-card--left .collage-content__info::after,
 .collage-card.collage-card--right .collage-content__info::after {
-    background: rgb(255 255 255 / 75%);
+    background: rgb(249 249 249 / 70%);
+}
+
+.versus-collage .collage-card {
+  /*
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;*/
+}
+
+.versus-collage .collage-card:not(.collage-card--left):not(.collage-card--right) a {
+  position: relative;
+}
+
+.versus-collage .collage-card .collage-card__image-wrapper img  {
+}
+
+.versus-collage .collage-card.collage-card--right {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 2;
 }

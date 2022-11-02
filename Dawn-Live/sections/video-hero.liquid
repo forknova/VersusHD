@@ -71,7 +71,95 @@
       >
         <div class="video-hero__content-inner">
           {%- for block in section.blocks -%}
+            {% liquid 
+              case block.settings.position
+                when 'top'
+                  assign top_CSS = '0px'
+                  assign left_CSS = '50%'
+                  assign right_CSS = 'unset'
+                  assign bottom_CSS = 'unset'
+                  assign transform_CSS = 'translateX(-50%)'
+                when 'right'
+                  assign top_CSS = '50%'
+                  assign right_CSS = '0'
+                  assign bottom_CSS = 'unset'
+                  assign left_CSS = 'unset'
+                  assign transform_CSS = 'translateY(-50%)'
+                when 'bottom'
+                  assign top_CSS = 'unset'
+                  assign right_CSS = 'unset'
+                  assign bottom_CSS = '0'
+                  assign left_CSS = '50%'
+                  assign transform_CSS = 'translateX(-50%)'
+                when 'left'
+                  assign top_CSS = '50%'
+                  assign right_CSS = 'unset'
+                  assign bottom_CSS = 'unset'
+                  assign left_CSS = '0'
+                  assign transform_CSS = 'translateY(-50%)'         
+                when 'center'
+                  assign top_CSS = '50%'
+                  assign right_CSS = 'unset'
+                  assign bottom_CSS = 'unset'
+                  assign left_CSS = '50%'
+                  assign transform_CSS = 'translate(-50%, -50%)'                                      
+              endcase
+
+              assign margin_top_CSS = block.settings.position_top 
+              assign margin_right_CSS = block.settings.position_right
+              assign margin_bottom_CSS = block.settings.position_bottom
+              assign margin_left_CSS = block.settings.position_left
+              assign letter_spacing_CSS = block.settings.letter_spacing
+            %}
+
             {%- case block.type -%}
+
+              {%- when 'heading' -%}
+                <h4
+                  class="video-hero__heading ff-heading animate"
+                  style="
+                    --text-max-width: {{ block.settings.text_max_width }}rem;
+                    --heading-font-size: {{ block.settings.heading_text_size }}px;
+                    
+                    font-size: {{ block.settings.heading_text_size }}px;
+                    letter-spacing: {{ letter_spacing_CSS }}px;
+                    top: {{ top_CSS }};
+                    right: {{ right_CSS }};
+                    bottom: {{ bottom_CSS }};
+                    left: {{ left_CSS }};
+                    transform: {{ transform_CSS }};
+                    margin-top: {{ margin_top_CSS  }}px;
+                    margin-right: {{ margin_right_CSS  }}px;
+                    margin-bottom: {{ margin_bottom_CSS  }}px;
+                    margin-left: {{ margin_left_CSS  }}px;
+                  "
+                >
+                  {{ block.settings.title | newline_to_br }}
+                </h4>
+
+              {%- when 'subheading' -%}
+                <div
+                  class="video-hero__subheading ff-body fs-body-large animate"
+                  style="
+                    --color-text: {{ section.settings.color_text }};
+                    --text-max-width: {{ block.settings.text_max_width }}rem;
+                    --heading-font-size: {{ block.settings.heading_text_size }}px;
+
+                    font-size: {{ block.settings.subheading_text_size }}px;
+                    letter-spacing: {{ letter_spacing_CSS }}px;
+                    top: {{ top_CSS }};
+                    right: {{ right_CSS }};
+                    bottom: {{ bottom_CSS }};
+                    left: {{ left_CSS }};
+                    transform: {{ transform_CSS }};
+                    margin-top: {{ margin_top_CSS  }}px;
+                    margin-right: {{ margin_right_CSS  }}px;
+                    margin-bottom: {{ margin_bottom_CSS  }}px;
+                    margin-left: {{ margin_left_CSS  }}px;
+                  "
+                >
+                  {{ block.settings.subheading }}
+                </div>
 
               {%- when 'button' -%}
                 <div
@@ -80,6 +168,16 @@
                     --color-background-button: {{ section.settings.color_background_button }};
                     --color-background-button-hover: {{ color_background_button_hover }};
                     --color-text-button: {{ section.settings.color_text_button }};
+
+                    top: {{ top_CSS }};
+                    right: {{ right_CSS }};
+                    bottom: {{ bottom_CSS }};
+                    left: {{ left_CSS }};
+                    transform: {{ transform_CSS }};
+                    margin-top: {{ margin_top_CSS  }}px;
+                    margin-right: {{ margin_right_CSS  }}px;
+                    margin-bottom: {{ margin_bottom_CSS  }}px;
+                    margin-left: {{ margin_left_CSS  }}px;
                   "
                 >
                   {%- if block.settings.link != blank and block.settings.link_text != blank -%}
@@ -222,10 +320,10 @@
             "type": "range",
             "label": "Heading size",
             "unit": "px",
-            "min": 48,
+            "min": 12,
             "max": 72,
             "step": 2,
-            "default": 64
+            "default": 20
           },
           {
             "id": "text_max_width",
@@ -235,6 +333,68 @@
             "max": 60,
             "step": 2,
             "default": 40
+          },
+          {
+            "id": "letter_spacing",
+            "type": "range",
+            "label": "Letter Spacing",
+            "min": 0,
+            "max": 30,
+            "step": 2,
+            "default": 8
+          },
+          {
+            "type": "header",
+            "content": "POSITION"
+          },
+          {
+            "id": "position",
+            "type": "select",
+            "label": "Top/Bottom/Left/Right/Center",
+            "options": [
+              { "label": "Top", "value": "top" },
+              { "label": "Right", "value": "right" },
+              { "label": "Bottom", "value": "bottom" },
+              { "label": "Left", "value": "left" },
+              { "label": "Center", "value": "center" }
+            ],
+            "default": "center"
+          },
+          {
+            "id": "position_top",
+            "type": "range",
+            "label": "Top Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_right",
+            "type": "range",
+            "label": "Right Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_bottom",
+            "type": "range",
+            "label": "Bottom Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_left",
+            "type": "range",
+            "label": "Left Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
           }
         ]
       },
@@ -257,6 +417,78 @@
             "max": 50,
             "step": 2,
             "default": 40
+          },
+          {
+            "id": "subheading_text_size",
+            "type": "range",
+            "label": "SubHeading size",
+            "unit": "px",
+            "min": 2,
+            "max": 72,
+            "step": 2,
+            "default": 8
+          },
+          {
+            "id": "letter_spacing",
+            "type": "range",
+            "label": "Letter Spacing",
+            "min": 0,
+            "max": 30,
+            "step": 2,
+            "default": 8
+          },
+          {
+            "type": "header",
+            "content": "POSITION"
+          },
+          {
+            "id": "position",
+            "type": "select",
+            "label": "Top/Bottom/Left/Right/Center",
+            "options": [
+              { "label": "Top", "value": "top" },
+              { "label": "Right", "value": "right" },
+              { "label": "Bottom", "value": "bottom" },
+              { "label": "Left", "value": "left" },
+              { "label": "Center", "value": "center" }
+            ],
+            "default": "center"
+          },
+          {
+            "id": "position_top",
+            "type": "range",
+            "label": "Top Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_right",
+            "type": "range",
+            "label": "Right Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_bottom",
+            "type": "range",
+            "label": "Bottom Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_left",
+            "type": "range",
+            "label": "Left Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
           }
         ]
       },
@@ -275,6 +507,59 @@
             "id": "link",
             "type": "url",
             "label": "Link URL"
+          },
+          {
+            "type": "header",
+            "content": "POSITION"
+          },
+          {
+            "id": "position",
+            "type": "select",
+            "label": "Top/Bottom/Left/Right/Center",
+            "options": [
+              { "label": "Top", "value": "top" },
+              { "label": "Right", "value": "right" },
+              { "label": "Bottom", "value": "bottom" },
+              { "label": "Left", "value": "left" },
+              { "label": "Center", "value": "center" }
+            ],
+            "default": "center"
+          },
+          {
+            "id": "position_top",
+            "type": "range",
+            "label": "Top Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_right",
+            "type": "range",
+            "label": "Right Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_bottom",
+            "type": "range",
+            "label": "Bottom Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
+          },
+          {
+            "id": "position_left",
+            "type": "range",
+            "label": "Left Position(-100,100)",
+            "min": -100,
+            "max": 100,
+            "step": 2,
+            "default": 0
           }
         ]
       }

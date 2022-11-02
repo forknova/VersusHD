@@ -54,4 +54,57 @@
     bottom: 0;
     left: 0;
     z-index: 2;
+  display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.video-hero__content-wrapper .btn{
+background: transparent;
+    color: white;
+        padding: 4px 20px;
+    position: relative;
+      text-transform: uppercase;
+    font-family: 'Rajdhani Medium';
+    font-size: 28px;
+  /box-shadow: inset -1px -1px 8px 0 #979797, 1px 1px 5px #979797;
+    text-decoration: none;
+      border: 1px solid white;
+}
+
+.video-hero__content-wrapper .video-hero__heading {
+    position: absolute;
+    /left: 50%;
+    /transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 42px;
+    /top: 50%;
+    margin: 0px 0 0 3px;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+}
+
+.video-hero__content-wrapper .video-hero__button-wrapper {
+	position: absolute;
+  	/bottom: 16px;
+    /left: 50%;
+    /transform: translateX(-50%);
+  
+}
+
+.video-hero__content-wrapper .video-hero__subheading {
+    position: absolute;
+    /left: 50%;
+    /transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 8px;
+    /top: 50%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.video-hero__content-wrapper .video-hero__content .video-hero__subheading {
+    margin: -10px 0 0 3px;
 }

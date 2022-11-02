@@ -152,29 +152,29 @@
 /* FONTS */
   
 @font-face {
-	font-family: "Rajdhani Bold";
-	src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Bold.woff2?v=1639769695") format("woff2"),
-	url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Bold.woff?v=1639769695") format("woff");
+  font-family: "Rajdhani Bold";
+  src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Bold.woff2?v=1639769695") format("woff2"),
+  url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Bold.woff?v=1639769695") format("woff");
 }    
 @font-face {
-	font-family: "Rajdhani Light";
-	src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Light.woff2?v=1639769695") format("woff2"),
-	url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Light.woff?v=1639769695") format("woff");
+  font-family: "Rajdhani Light";
+  src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Light.woff2?v=1639769695") format("woff2"),
+  url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Light.woff?v=1639769695") format("woff");
 }  
 @font-face {
-	font-family: "Rajdhani Medium";
-	src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Medium.woff2?v=1639769695") format("woff2"),
-	url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Medium.woff?v=1639769695") format("woff");
+  font-family: "Rajdhani Medium";
+  src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Medium.woff2?v=1639769695") format("woff2"),
+  url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Medium.woff?v=1639769695") format("woff");
 }    
 @font-face {
-	font-family: "Rajdhani Regular";
-	src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Regular.woff2?v=1639769574") format("woff2"),
-	url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Regular.woff?v=1639769574") format("woff");
+  font-family: "Rajdhani Regular";
+  src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Regular.woff2?v=1639769574") format("woff2"),
+  url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-Regular.woff?v=1639769574") format("woff");
 }  
 @font-face {
-	font-family: "Rajdhani SemiBold";
-	src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-SemiBold.woff2?v=1639769695") format("woff2"),
-	url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-SemiBold.woff?v=1639769695") format("woff");
+  font-family: "Rajdhani SemiBold";
+  src: url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-SemiBold.woff2?v=1639769695") format("woff2"),
+  url("https://cdn.shopify.com/s/files/1/0551/6030/7848/files/Rajdhani-SemiBold.woff?v=1639769695") format("woff");
 }    
   
 /* base */
@@ -228,7 +228,7 @@ html.no-js .no-js-hidden {
   }
   
   section .featured-collection-overlay {
-  	left: 5rem;
+    left: 5rem;
   }
 }
 
@@ -961,6 +961,15 @@ summary::-webkit-details-marker {
   color: rgba(var(--color-foreground), 0.7);
 }
 
+.spaced-section .subtitle {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 3px;
+  font-size: 14px;
+  padding-top: 4px;
+}
+
 /* component-grid */
 .grid {
   display: flex;
@@ -1021,7 +1030,7 @@ summary::-webkit-details-marker {
   
 @media screen and (min-width: 1200px) {
   .grid--quarter-max.grid--4-col-desktop .grid__item {
-    max-width: 20%;
+    /*max-width: 20%;*/
   }
 }
 
@@ -1079,8 +1088,8 @@ summary::-webkit-details-marker {
 @media screen and (min-width: 1280px) {
   .grid--4-col-tablet .grid__item,
   .grid--4-col-desktop .grid__item {
-    width: calc(20% - 1rem * 3 / 4);
-    max-width: 20%;
+    /*width: calc(20% - 1rem * 3 / 4);
+    max-width: 20%;*/
   }
 }
 
@@ -1918,11 +1927,20 @@ input[type='checkbox'] {
   padding-bottom: 1rem;
 }
   
-.header__menu-wrapper .header__left-menu,
-.header__menu-wrapper .header__right-menu {
-	display: none;
+.header__menu-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
+.header__menu-wrapper .header__left-menu,
+.header__menu-wrapper .header__right-menu {
+  display: none;
+  flex: 1 0;
+}
+
+.header__menu-wrapper .header__left-menu {
+  justify-content: flex-end;
+}
 
 @media screen and (min-width: 990px) {
   .header {
@@ -1966,17 +1984,15 @@ input[type='checkbox'] {
   
   .header--top-center.header--has-secondary .header__menu-wrapper {
     grid-area: navigation;
-    display: flex;
-    justify-content: center;
     align-items: flex-end;
   }
   
   .header__menu-wrapper .header__left-menu, .header__menu-wrapper .header__right-menu {
-	display: block;
+    display: flex;
   }
   
   .header--top-center.header--has-secondary .header__inline-menu {
-  	grid-area: none;
+    grid-area: none;
     display: none;
   }
 }
@@ -2411,40 +2427,167 @@ details-disclosure > details {
 }
 
 section .featured-collection-overlay {
-	width: 200vw;
+  width: 200vw;
     height: 100%;
     display: block;
     position: absolute;
     left: 0;
     background: #FFF;
-  	background: url('https://i.pinimg.com/originals/86/31/36/863136d8efa1847f348a6976eb4844c4.jpg') no-repeat center;
-  	background-size: cover;
-  	opacity: 0.04;
-  	z-index: -1;
+    background: url('https://i.pinimg.com/originals/86/31/36/863136d8efa1847f348a6976eb4844c4.jpg') no-repeat center;
+    background-size: cover;
+    opacity: 0.04;
+    z-index: -1;
 }
   
 div.clip {
-	overflow: clip;
+  overflow: clip;
   position: absolute;
-  	width: 100%;
-  	height: 100%;
+    width: 100%;
+    height: 100%;
   z-index: -1;
 }
 .shopify-section {
-	overflow-x: clip;
+  overflow-x: clip;
 }
 
   
 @media (min-width: 768px) {
   section .featured-collection-overlay {
-	width: 100vw;
+  width: 100vw;
   }
 }
   
-.header {
-	padding-top: 0px;
-}
+
   
 .offset-section {
-	margin-top: 30px;  
+  margin-top: 30px;  
 }
+  
+/* HEADER NAVIGATION */
+  
+.header {
+  padding-top: 0px;
+    position: relative;
+}
+  
+details-disclosure>details {
+  position: unset;
+}
+  
+.header__submenu.list-menu[level="2"] {
+    min-width: calc(100% - 100px);
+    left: 50px;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    padding: 1rem;
+    background: #131313;
+    /transition: all .9s ease-in;
+    animation: sweep .3s ease-in-out;
+}
+/*
+details .header__submenu.list-menu[level="1"] {
+    transform: translateY(-10px);
+  opacity: 0; 
+}
+  
+details[open] .header__submenu.list-menu[level="1"] {
+    transform: translateY(0px);
+    opacity: 1; 
+}  */
+  
+@keyframes sweep {
+  0%    {opacity: 0; transform: translateY(-10px)}
+  100%  {opacity: 1; transform: translateY(0px)}
+}  
+  
+.header__submenu.list-menu[level="2"] > li {
+  /border: 1px solid red;
+    position:relative;
+    /background: url() center no-repeat;
+    /background-size: cover;
+    z-index: 0;
+}
+  
+.header__submenu.list-menu[level="2"] .submenu-item-bkg {
+  object-fit: cover;
+    object-position: center;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+.header__submenu.list-menu[level="2"] > li::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left:0;
+  top: 0;
+  background: rgb(21 21 21 / 70%);
+  z-index: -1;
+  transition: background .3s ease-in;
+}
+.header__submenu.list-menu[level="2"] li.not-active::after {
+  background: rgb(19 19 19 / 90%);
+}
+.header__submenu.list-menu[level="2"] li.hovered::after {
+  background: rgb(21 21 21 / 40%);
+}
+
+  
+.header__submenu .header__menu-item {
+  padding: 20px;
+  color: white;
+}
+.header__submenu .header__submenu .header__menu-item {
+  padding: 8px;
+  padding-left: 20px;
+  font-size: 13px;
+  font-family: 'Rajdhani Light'; 
+}
+  
+.header__submenu summary.header__menu-item {
+  text-transform: uppercase;
+  font-size: 18px;
+  left: 0;
+  top: 0;
+  transition: all .3s ease;
+}  
+
+.header__submenu summary.header__menu-item a {
+  text-decoration: none;
+  color: white;
+}
+  
+.header__submenu.list-menu[level="2"] details {
+  height: 100%;
+  cursor: default;
+}
+.header__submenu.list-menu[level="2"] li.not-active details {
+  cursor: pointer;
+}
+  
+.header__submenu.list-menu[level="2"] summary {
+  cursor: default;
+}
+.header__submenu.list-menu[level="2"] li.not-active details summary.header__menu-item {
+  top: 40%;
+  left: 20%;
+  pointer-events: none;
+}
+
+.header__submenu.list-menu[level="2"] li details > .header__submenu {
+  transition: all .3s ease-in;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+  
+.header__submenu.list-menu[level="2"] li.not-active details > .header__submenu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0px);
+}
+  

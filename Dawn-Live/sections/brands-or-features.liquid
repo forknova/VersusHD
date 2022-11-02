@@ -1,0 +1,108 @@
+{{ 'brands-or-features.css' | asset_url | stylesheet_tag }}
+
+<section class="{{ section.settings.classes }} {% if section.settings.secondary_background %}background-secondary{% else %}spaced-section{% endif %}">
+	<div class="brands-or-features" 
+    style="
+    "
+  >
+    <div class="page-width">
+      <div class="title-wrapper-with-link{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}{% if section.settings.collection.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} title-wrapper--self-padded-tablet-down{% endif %}">
+        <h2 class="h1 title{% if section.settings.title == blank %} title--no-heading{% endif %}">{{ section.settings.title | escape }}</h2>
+        <h3 class="subtitle">{{ section.settings.subheading | escape }}</h2>
+      </div>
+      <div class="brands-or-features__container">
+      {%- for block in section.blocks -%}
+        {% if block.settings.link %}<a href="{{block.settings.link}}" class="link-wrapper">{% endif %}
+        <div class="brands-or-features__item">
+            <div class="image-wrapper">
+              {% render 'image' with
+                image: block.settings.image,
+                wrapper_class: 'slideshow__image-wrapper slideshow__image--desktop brands-or-features__image',
+              %}
+            </div>
+            {% if block.settings.title %}<h3 class="brands-or-features__item-title">{{ block.settings.title }}</h3>{% endif %}
+            {% if block.settings.subtitle %}<h4 class="brands-or-features__item-subtitle">{{ block.settings.subtitle }}</h4>{% endif %}
+        </div>
+        {% if block.settings.link %}</a>{% endif %}
+      {%- endfor -%}
+
+      </div>
+
+  	</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brands or Features",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+    		  "id": "image",
+    		  "type": "image_picker",
+    		  "label": "Image"
+      	},
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtitle"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link To"
+        },
+        {
+          "id": "text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000"
+        }     
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brands or Features",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

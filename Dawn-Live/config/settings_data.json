@@ -18,6 +18,13 @@
     "social_facebook_link": "https:\/\/www.facebook.com\/Versus-HD-110357638122275",
     "social_instagram_link": "http:\/\/instagram.com\/versus.hd\/",
     "versus_header_font": "Rajdhani Regular",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Sleek_Fashion_I_Trendy_Banner_Landscape_Facebook_Shops_Ad_Instagram_Post_Instagram_Post_20_x_10.5_cm_3_03d76738-132d-4a25-9ecd-b0d50cba54f8.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "shopify:\/\/shop_images\/Sleek_Fashion_I_Trendy_Banner_Landscape_Facebook_Shops_Ad_Instagram_Post_Instagram_Post_6.png",
+    "checkout_sidebar_background_image": "shopify:\/\/shop_images\/Untitled_design_93.png",
+    "checkout_accent_color": "#030303",
+    "checkout_button_color": "#000000",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -35,7 +42,7 @@
             "type": "announcement",
             "disabled": true,
             "settings": {
-              "text": "30% OFF AT  CHECKOUT ON ALL PRODUCTS !!! FREE SHIPPING WORLDWIDE!!! HAPPY HOLIDAYS",
+              "text": "FREE SHIPPING WORLDWIDE!!! HAPPY HOLIDAYS",
               "color_scheme": "background-2",
               "link": ""
             }
@@ -43,7 +50,7 @@
           "411305f0-d8c4-48da-b0c5-f2cdd3e883a6": {
             "type": "announcement",
             "settings": {
-              "text": "30% OFF AT  CHECKOUT ON ALL PRODUCTS !!! FREE SHIPPING WORLDWIDE!!! HAPPY HOLIDAYS",
+              "text": "💀14% + 14% OFF ON ALL PRODUCTS AT CHECKOUT !! FREE SHIPPING WORLDWIDE!! HAPPY VALENTINE'S 💀",
               "color_scheme": "inverse",
               "link": ""
             }
@@ -61,7 +68,7 @@
         "settings": {
           "color_scheme": "background-2",
           "logo": "shopify:\/\/shop_images\/Untitled_design_6.png",
-          "logo_width": 70,
+          "logo_width": 90,
           "logo_position": "top-center",
           "menu": "main-menu-left",
           "show_line_separator": false,
@@ -112,23 +119,18 @@
         "settings": {
           "color_scheme": "background-1",
           "newsletter_enable": true,
-          "newsletter_heading": "Exclusive access for you",
-          "newsletter_text": "Sign up and receive 20% off your first order, our special offers and exciting new product arrivals",
+          "newsletter_heading": "45% OFF",
+          "newsletter_text": "Sign up and receive 45% off your first order, our special offers and exciting new product arrivals",
           "show_social": true,
           "enable_country_selector": true,
           "enable_language_selector": true,
           "payment_enable": true,
-          "credits_text": "If you have any of your suggestions, questions or other matters relating to our business relationship, you may contact us at (+421) 940 973 088, send us a mail at our address below or you may contact us by email at: info@versushd.com. In case of complaints about the purchased goods, please follow the Complaints Procedure outlined in Returns and Refunds Policy section. \nVersusHD and www.versushd.com \nare owned and operated by Souleymane Doumouya - EPICC Lermontova 3, 811 05 Bratislava Slovak Republic ID number: 52591476 V.A.T.: 1121333719"
+          "credits_text": "If you have any of your suggestions, questions or other matters relating to our business relationship, you may contact us at (+421) 940 973 088, send us a mail at our address below or you may contact us by email at: info@versushd.com. In case of complaints about the purchased goods, please follow the Complaints Procedure outlined in Returns and Refunds Policy section. \nVERSUS House of Unconventional DESIGNS \"VERSUS HD\" and www.versushd.com \nare owned and operated by Souleymane Doumouya - EPICC Lermontova 3, 811 05 Bratislava Slovak Republic ID number: 52591476 V.A.T.: 1121333719"
         }
       }
     },
     "content_for_index": [],
     "blocks": {
-      "18218067344242134805": {
-        "type": "shopify:\/\/apps\/product-reviews-ugc-with-q-a\/blocks\/app\/34006358-52bd-4ec7-8c78-200fe58b77ba",
-        "disabled": false,
-        "settings": {}
-      },
       "1876356527693400185": {
         "type": "shopify:\/\/apps\/shop-instagram-ugc\/blocks\/block.embed.socialshopwave-helper\/af4b13c8-5fdf-4065-8045-d1fe22f45f5a",
         "disabled": false,

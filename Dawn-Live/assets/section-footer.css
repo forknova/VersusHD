@@ -159,6 +159,11 @@
   margin-bottom: 2rem;
   margin-top: 0;
   font-size: calc(var(--font-heading-scale) * 1.6rem);
+  text-align: left;
+}
+
+.footer-block__newsletter .footer-block__heading {
+  text-align: center;
 }
 
 @media screen and (min-width: 990px) {
@@ -259,6 +264,7 @@
 .footer__localization h2 {
   margin: 1rem 1rem 0.5rem;
   color: rgba(var(--color-foreground), 0.75);
+  text-align: left;
 }
 
 @media screen and (min-width: 750px) {

@@ -1,0 +1,359 @@
+{{ 'featured-5.css' | asset_url | stylesheet_tag }}
+
+
+<section class="{{ section.settings.classes }} {% if section.settings.secondary_background %}background-secondary{% else %}spaced-section{% endif %}">
+	<div class="featured-5" 
+    style="
+"
+  >
+    <div class="page-width">
+
+      <div class="featured-5-block__container">
+      {%- for block in section.blocks -%}
+        {% if forloop.index > 5 %} {% break %} {% endif %}
+        {%- assign block_title = block.settings.title -%}
+
+        {% case block.type %}
+          {% when 'product' %}
+            {%- assign featured_block = block.settings.product -%}
+            {% assign featured_image = featured_block.selected_or_first_available_variant.featured_media | default: featured_block.featured_media %}
+            {% assign link_url = featured_block.url %}
+
+          {% when 'collection' %}
+            {%- assign featured_block = block.settings.collection -%}
+            {% assign featured_image = featured_block.image %}
+            {% assign link_url = featured_block.url %}
+
+          {% when 'image' %}
+          This is a image
+            {%- assign featured_block = block.settings.image -%}
+            {% assign featured_image = block.settings.image %}
+            {% assign link_url = block.settings.link %}
+        {% endcase %}
+
+    		<div class="featured-5-block {%if forloop.first%}middle-block{%endif%}"
+          style="
+            --featured-5-text-color: {{ block.settings.text_color }};
+            --featured-5-overlay-color: {{ block.settings.overlay_color }};
+            --featured-5-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.00 }};" 
+        >
+    			<div class="featured-5-block__content">
+
+            <div class="image-title-wrapper">
+            <a href="{{link_url}}" style="text-decoration: none;">
+              <div class="image-wrapper">
+                <div class="image-overlay"></div>
+                {% render 'image' with
+                  image: featured_image,
+                  wrapper_class: 'slideshow__image-wrapper slideshow__image--desktop',
+                %}
+              </div>
+
+              <h2 class="featured-5-block__title {{block.settings.title_style}}">{% if block_title != blank %}<span>{{ block_title }}</span>{%else%}<span>{{featured_block.title}}</span>{%endif%}</h2>      
+            </a>
+            </div>
+
+            {% if block.type == 'product' %}
+              {% render 'price', product: featured_block, price_class: '' %}
+            {% endif %}
+            
+            {% if block.settings.enable_button %}
+              {% if block.type == 'product' %}
+                <form method="post" action="/cart/add">
+                  <input name="id" value="{{ featured_block.variants.first.id }}" type="hidden" />
+                  <input name="add" value="ADD TO CART" type="submit" class="add-to-cart-btn featured-5-block__button" />
+                </form>
+              {% else %}
+                <a class="featured-5-block__button" href="{{link_url}}">{{ block.settings.button_text }}</a>
+                
+              {% endif %}
+            {% endif %}
+    			</div>
+    		</div>
+      {%- endfor -%}
+      </div>
+
+
+  	</div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Featured-5",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Subheading"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured-collection.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.featured-collection.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "title_style",
+          "type": "select",
+          "label": "Title Style",
+          "options": [
+            {
+              "value": "style-standard",
+              "label": "Standard Style"
+            },
+            {
+              "value": "style-overlay",
+              "label": "Overlay Style"
+            }
+          ],
+          "default": "style-standard"
+        },        
+        {
+          "type": "checkbox",
+          "id": "enable_button",
+          "default": false,
+          "label": "Show Call-to-action button"
+        },
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "Collection Button Text",
+          "default": "BROWSE"
+        },
+        {
+          "id": "text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000"
+        },        
+        {
+          "id": "overlay_color",
+          "type": "color",
+          "label": "Overlay Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "title_style",
+          "type": "select",
+          "label": "Title Style",
+          "options": [
+            {
+              "value": "style-standard",
+              "label": "Standard Style"
+            },
+            {
+              "value": "style-overlay",
+              "label": "Overlay Style"
+            }
+          ],
+          "default": "style-standard"
+        },     
+        {
+          "type": "checkbox",
+          "id": "enable_button",
+          "default": false,
+          "label": "Show Add-to-cart button"
+        },
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "Product Add To Cart Text",
+          "default": "ADD TO CART"
+        },
+        {
+          "id": "text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000"
+        },        
+        {
+          "id": "overlay_color",
+          "type": "color",
+          "label": "Overlay Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+    		  "id": "image",
+    		  "type": "image_picker",
+    		  "label": "Image"
+      	},
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "title_style",
+          "type": "select",
+          "label": "Title Style",
+          "options": [
+            {
+              "value": "style-standard",
+              "label": "Standard Style"
+            },
+            {
+              "value": "style-overlay",
+              "label": "Overlay Style"
+            }
+          ],
+          "default": "style-standard"
+        },     
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link To"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_button",
+          "default": false,
+          "label": "Show Call-to-action button"
+        },
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "Image Button Text",
+          "default": "BROWSE"
+        },
+        {
+          "id": "text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000"
+        },        
+        {
+          "id": "overlay_color",
+          "type": "color",
+          "label": "Overlay Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured-5 (1st is Middle)",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

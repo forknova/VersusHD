@@ -334,8 +334,7 @@
 
 .versushd-collection-list .card {
     border: none;
-    	box-shadow: 3px 3px 11px 2px #181818;
-  	box-shadow: 6px 3px 7px 0px #000000;
+  	box-shadow: 6px 3px 7px 0px #181818;
 }
 
 .versushd-card-character.card-colored {
