@@ -20,5 +20,5 @@
 
 In the theme directory (with shop credentails), you can run:
 
-### `theme get --list --password=[your-password] --store="[your-store.myshopify.com]"`
-### `theme new --password=[your-password] --store="[your-store.myshopify.com]" --name=[theme name]`
+#### `theme get --list --password=[your-password] --store="[your-store.myshopify.com]"`
+#### `theme new --password=[your-password] --store="[your-store.myshopify.com]" --name=[theme name]`
