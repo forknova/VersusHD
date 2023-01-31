@@ -1,18 +1,24 @@
 # VersusHD
-- Ecommerce store for Jewelry (Bracelets and Accessories)
-- Development using https://www.shopify.com/
+- Ecommerce store for VersusHD
 - Theme development and customization
-<br>
+### 🚀 LIVE 🌎 https://www.versushd.com/
+##### <br />
 
-## TOOLS Stack
-### Languages
-- Liquid
+## 📺 DEMO
+![Preview](src/assets/preview.gif)
+
+## 🧰 BUILT WITH:
+- Shopify
+- Liquid.js
 - Javascript
-- HTML/CSS
-
-### Deployment
+- HTML
+- CSS
+### DEPLOYMENT
 - ThemeKit
-<br>
 
-## Live:
-https://www.versushd.com/
+## ⚙️ AVAILABLE SCRIPTS
+
+In the theme directory (with shop credentails), you can run:
+
+### `theme get --list --password=[your-password] --store="[your-store.myshopify.com]"`
+### `theme new --password=[your-password] --store="[your-store.myshopify.com]" --name=[theme name]`
